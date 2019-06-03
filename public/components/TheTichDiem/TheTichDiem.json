@@ -1,0 +1,22 @@
+[
+    {
+        "id":1,
+        "name":"Thẻ bạch kim",
+        "describe":"Đây là thẻ bạch kim"
+    },
+    {
+        "id":2,
+        "name":"Thẻ vàng",
+        "describe":"Đây là thẻ vàng"
+    },
+    {
+        "id":3,
+        "name":"Thẻ bạc",
+        "describe":"Đây là thẻ bạc"
+    },
+    {
+        "id":4,
+        "name":"Thẻ đồng",
+        "describe":"Đây là thẻ đồng"
+    }
+]

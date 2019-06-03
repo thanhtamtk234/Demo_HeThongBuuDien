@@ -1,0 +1,86 @@
+/*!
+ * Start Bootstrap - Modern Business (https://startbootstrap.com/template-overviews/modern-business)
+ * Copyright 2013-2019 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-logomodern-business-nav/blob/master/LICENSE)
+ */
+body {
+  padding-top: 56px;
+  padding: 10px;
+}
+
+.carousel-item {
+  height: 100vh;
+  min-height: 700px;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.portfolio-item {
+  margin-bottom: 30px;
+}
+.content{
+  margin-top: 10px;
+}
+.navbar-brand{
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+h1{
+  color: green;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-size: 50px;
+}
+.service{
+  margin-top: 50px;
+}
+.dropdown-item{
+  color: black;
+  background-color: rgb(177, 226, 235);
+}
+/* .container-fluid{
+    background : linear-gradient(to right, red, yellow);
+    background : -moz-linear-gradient(right, red, yellow);
+    background : -webkit-linear-gradient(right, red, yellow);
+    background : -o-linear-gradient(right, red, yellow);
+    /* opacity: 0.5; */
+/*} */
+.sanpham{
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  grid-gap: 1em;
+}
+.card-header{
+  background-color:#28a745;
+}
+.carousel-caption{
+  color: yellow;
+  text-shadow: 0 0 0.5em black;
+}
+.santander-personnalite-gold{
+  background: yellow;
+}
+
+.login{
+  display: flex;
+  justify-content: center;
+  background: url('../images/nen3.jpg') no-repeat; width: 100%; height: 100vh;
+}
+.form-container{
+  border:0px solid #fff; padding: 50px 60px; margin-top: 20vh;
+  -webkit-box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);
+  -moz-box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);
+  box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);
+  color: #fff;
+}
+.form-regrester{
+  border:0px solid #fff; padding: 30px 40px; margin-top: 10vh;
+  -webkit-box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);
+  -moz-box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);
+  box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);
+  color: #fff;
+}
+.form-name{
+  color:#fff;
+}
