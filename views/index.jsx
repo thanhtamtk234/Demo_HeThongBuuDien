@@ -1,9 +1,9 @@
 var React = require('react');
-var DefaultLayout = require('./layouts/default');
+import DefaultLayout from '../layouts/default'
 import Header from './layouts/Header'
 import Footer from './layouts/Footer'
 
-class Index extends React.Component {
+export default class Index extends React.Component {
   render() {
     return (
       <DefaultLayout  title="Trang chủ">
@@ -13,5 +13,3 @@ class Index extends React.Component {
     );
   }
 }
-
-module.exports = Index;

@@ -108,10 +108,14 @@ router.get('/admin/user/delete/:id', (req, res) => {
 router.get('/guihang', (req, res) => {
   res.render('layouts/Transport_Customer');
 });
+
 router.get('/quanlidonvan', (req, res) => {
-  Transport_customer.findAll()
+  Transport_customer.findAll({
+    order: [
+      ['id_transport', 'DESC']
+    ],
+  })
     .then((result) => {
-      // console.log(result)
       res.render('admin/Transport_customer', { result });
     })
     .catch(err => console.log(err));
@@ -160,7 +164,36 @@ router.get('/quanlidonvan/delete/:id_transport', (req, res) => {
 });
 
 router.get('/quanlidonvan/:id/edit', (req, res) => {
-  res.render('admin/Transport_Employees');
+  Transport_customer.findOne({
+    where: {
+      id_transport: req.params.id,
+    },
+  }).then(transportData => {
+    res.render('admin/transport_customer_edit', { transportData });
+  }).catch(error => {
+    console.log(error)
+    res.redirect('/quanlidonvan');
+  })
+});
+
+router.post('/quanlidonvan/:id/update', (req, res) => {
+  Transport_customer.findOne({
+    where: {
+      id_transport: req.params.id,
+    },
+  }).then(transportData => {
+    transportData.Name_Sender = req.body.Name_Sender;
+    transportData.Adress_Sender = req.body.Adress_Sender;
+    transportData.Phone_Sender = req.body.Phone_Sender;
+    transportData.Name_Receiver = req.body.Name_Receiver;
+    transportData.Adress_Receiver = req.body.Adress_Receiver;
+    transportData.Phone_Receiver = req.body.Phone_Receiver;
+    transportData.save().then(() => {
+      res.redirect('/quanlidonvan');
+    })
+  }).catch(error => {
+    console.log(error)
+  })
 });
 
 module.exports = router;

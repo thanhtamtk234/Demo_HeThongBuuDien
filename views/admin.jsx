@@ -1,6 +1,6 @@
 var React = require('react');
 
-class Admin extends React.Component {
+export default class Admin extends React.Component {
     render() {
         return (
             <div>
@@ -9,5 +9,3 @@ class Admin extends React.Component {
         );
     }
 }
-
-module.exports = Admin;

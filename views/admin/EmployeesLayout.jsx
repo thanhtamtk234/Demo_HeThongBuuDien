@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Css from '../layouts/Css';
 
-class EmployeesLayout extends Component {
+export default class EmployeesLayout extends Component {
     render() {
         return (
             <div>
@@ -34,5 +34,3 @@ class EmployeesLayout extends Component {
         );
     }
 }
-
-export default EmployeesLayout;

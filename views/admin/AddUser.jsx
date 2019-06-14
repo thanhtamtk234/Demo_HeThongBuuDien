@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import Css from '../layouts/Css';
 import AdminLayout from './AdminLayout';
 import Footer from './../layouts/Footer';
-
-class AddUser extends Component {
+export default class AddUser extends Component {
     render() {
         return (
             <AdminLayout>
@@ -65,4 +64,3 @@ class AddUser extends Component {
     }
 }
 
-export default AddUser;

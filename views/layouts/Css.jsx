@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Css extends Component {
+export default class Css extends Component {
     render() {
         return (
             <html>
@@ -42,4 +42,3 @@ class Css extends Component {
     }
 }
 
-export default Css;

@@ -1,6 +1,7 @@
 var React = require('react');
 import Css from './Css';
-class DefaultLayout extends React.Component {
+
+export default class DefaultLayout extends React.Component {
     logOut(e) {
         e.preventDefault()
         localStorage.removeItem('usertoken')
@@ -52,17 +53,11 @@ class DefaultLayout extends React.Component {
                         </div>
                     </div>
                 </div>
-
                 {this.props.children}
-
             </div>
-
-
 
             //     </body>
             // </html>
-
         );
     }
 }
-module.exports = DefaultLayout;

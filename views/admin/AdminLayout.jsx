@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Css from '../layouts/Css';
 import Footer from './../layouts/Footer';
 
-class AdminLayout extends Component {
+export default class AdminLayout extends Component {
   render() {
     return (
       <div>
@@ -44,5 +44,3 @@ class AdminLayout extends Component {
     );
   }
 }
-
-export default AdminLayout;
