@@ -28,7 +28,7 @@ router.post('/login', (req, res) => {
   const { username } = req.body;
   const pw = req.body.password;
 
-  if (username == 'admin' && pw == '12345') {
+  if (username == 'admin' && pw == '123456') {
     // req.flash('loginMessage','dkfksd')
     res.redirect('admin');
   } else {
@@ -144,6 +144,7 @@ router.post('/guihang', (req, res) => {
     Phone_Receiver,
   }).then(result => res.redirect('/quanlidonvan'));
 });
+
 router.get('/quanlidonvan/delete/:id_transport', (req, res) => {
   Transport_customer.destroy({
     where: {
@@ -157,7 +158,8 @@ router.get('/quanlidonvan/delete/:id_transport', (req, res) => {
     })
     .catch(err => console.log('err'));
 });
-router.get('/transport_employees', (req, res) => {
+
+router.get('/quanlidonvan/:id/edit', (req, res) => {
   res.render('admin/Transport_Employees');
 });
 

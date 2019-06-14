@@ -68,7 +68,7 @@ class Transport_customer extends React.Component {
                                         {item.Phone_Receiver}
                                     </td>
                                     <td>
-                                        <a href="/transport_employees" className="btn btn-primary a-btn-slide-text-sua">
+                                        <a href={"/quanlidonvan/" + item.id_transport + "/edit"}  className="btn btn-primary a-btn-slide-text-sua">
                                             <span className="glyphicon glyphicon-edit" aria-hidden="true" />
                                             <span><strong>Sửa</strong></span>
                                         </a>
