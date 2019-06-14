@@ -182,6 +182,14 @@ ul.navbar-nav li:hover a {
 text-shadow: 0 0 black;
 }
 
+input.nguoinhan {
+  
+    border: 1px solid #E1E1E1;
+    height: 18px;
+    margin-left: 21px;
+    width: 180px;
+}
+
 input.noidung {
     border: 1px solid #E1E1E1;
     height: 90px;
