@@ -1,77 +1,72 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+
+const router = express.Router();
 const db = require('../config/database');
 const User = require('../models/user');
-const Transport_customer = require('../models/transport')
+const Transport_customer = require('../models/transport');
 /* GET home page. */
 router.get('/', (req, res, next) => {
   res.render('index', { title: 'Express' });
-
 });
-router.get('/admin/user', (req, res) =>
-  User.findAll()
+router.get('/admin/user', (req, res) => User.findAll()
 
-    .then(result => {
-
-      res.render('admin/user', { result });
-    })
-    .catch(err => console.log(err))
-);
+  .then((result) => {
+    res.render('admin/user', { result });
+  })
+  .catch(err => console.log(err)));
 
 router.get('/admin/home', (req, res) => {
-  res.render('admin/home')
+  res.render('admin/home');
 });
 
-
-//===== login page
+//= ==== login page
 router.get('/login', (req, res) => {
   res.render('layouts/login');
 });
 
 router.post('/login', (req, res) => {
-  var username = req.body.username;
-  var pw = req.body.password;
+  const { username } = req.body;
+  const pw = req.body.password;
 
   if (username == 'admin' && pw == '12345') {
     // req.flash('loginMessage','dkfksd')
     res.redirect('admin');
-  }
-  else {
+  } else {
     User.findOne({
       where: {
-        username: username,
-        password: pw
+        username,
+        password: pw,
       },
-      attributes: ['role']
+      attributes: ['role'],
     })
-      .then(result => {
-        var rs = result.role;
+      .then((result) => {
+        const rs = result.role;
         if (rs === 0) {
-          res.redirect('/admin')
-        }
-        else if (rs === 1) {
-          res.redirect('/nhanvien')
+          res.redirect('/admin');
+        } else if (rs === 1) {
+          res.redirect('/nhanvien');
         }
       })
-      .catch(err => res.redirect('/login'),
-      // req.flash('loginMessage','dkfksd')
-      )
+      .catch(
+        err => res.redirect('/login'),
+        // req.flash('loginMessage','dkfksd')
+      );
   }
-})
+});
 router.get('/admin', (req, res) => {
   res.render('admin/AdminLayout');
 });
 router.get('/admin/user', (req, res) => {
-  res.render('admin/user')
+  res.render('admin/user');
 });
 router.get('/test', (req, res) => {
-  res.render('admin/test')
+  res.render('admin/test');
 });
 router.get('/nhanvien', (req, res) => {
-  res.render('admin/EmployeesLayout')
+  res.render('admin/EmployeesLayout');
 });
 router.get('/them', (req, res) => {
-  res.render('admin/AddUser')
+  res.render('admin/AddUser');
 });
 
 // begin addUser
@@ -82,77 +77,88 @@ router.post('/them', (req, res) => {
     username: req.body.hoten,
     Sdt: req.body.sdt,
     DiaChi: req.body.diachi,
-    MaBuuCuc: req.body.mabuucuc
-
-  }
-  let { Email, password, username, Sdt, DiaChi, MaBuuCuc } = data;
-  User.create({ Email, password, username, Sdt, DiaChi, MaBuuCuc })
+    MaBuuCuc: req.body.mabuucuc,
+  };
+  const {
+    Email, password, username, Sdt, DiaChi, MaBuuCuc,
+  } = data;
+  User.create({
+    Email, password, username, Sdt, DiaChi, MaBuuCuc,
+  })
     .then(result => res.redirect('/admin/user'))
-    .catch(err => console.log(err))
-})
+    .catch(err => console.log(err));
+});
 // end addUser
-//Delete
+// Delete
 router.get('/admin/user/delete/:id', (req, res) => {
   User.destroy({
     where: {
-      id: req.params.id
-    }
+      id: req.params.id,
+    },
   })
-    .then(result => {
-      console.log(result)
-      console.log('Xóa thành công')
-      res.redirect('/admin/user')
+    .then((result) => {
+      console.log(result);
+      console.log('Xóa thành công');
+      res.redirect('/admin/user');
     })
-    .catch(err => console.log(err))
-})
+    .catch(err => console.log(err));
+});
 
-//Transport
+// Transport
 router.get('/guihang', (req, res) => {
-  res.render('layouts/Transport_Customer')
+  res.render('layouts/Transport_Customer');
 });
-router.get('/quanlidonvan',(req,res)=>{
+router.get('/quanlidonvan', (req, res) => {
   Transport_customer.findAll()
-  .then(result =>{
-    // console.log(result)
-    res.render('admin/Transport_customer',{result});
-  })
-  .catch(err => console.log(err))
+    .then((result) => {
+      // console.log(result)
+      res.render('admin/Transport_customer', { result });
+    })
+    .catch(err => console.log(err));
 });
-  
-router.post('/guihang',(req,res)=>{
-  const dt={
-    Name_Sender:req.body.hotengui,
-    Adress_Sender:req.body.diachigui,
-    Phone_Sender:req.body.sdtgui,
-    Name_Receiver:req.body.hotennhan,
-    Adress_Receiver:req.body.diachinhan,
-    Phone_Receiver:req.body.sdtnhan,
-  }
-  console.log(dt)
-  let{Name_Sender,Adress_Sender,Phone_Sender,Name_Receiver,Adress_Receiver,Phone_Receiver}=dt;
-  Transport_customer.create({Name_Sender,Adress_Sender,Phone_Sender,Name_Receiver,Adress_Receiver,Phone_Receiver})
-  .then(result=> res.redirect('/quanlidonvan'))
-})
-router.get('/quanlidonvan/delete/:id_transport',(req,res)=>{
+
+router.post('/guihang', (req, res) => {
+  const dt = {
+    Name_Sender: req.body.hotengui,
+    Adress_Sender: req.body.diachigui,
+    Phone_Sender: req.body.sdtgui,
+    Name_Receiver: req.body.hotennhan,
+    Adress_Receiver: req.body.diachinhan,
+    Phone_Receiver: req.body.sdtnhan,
+  };
+  console.log(dt);
+  const {
+    Name_Sender,
+    Adress_Sender,
+    Phone_Sender,
+    Name_Receiver,
+    Adress_Receiver,
+    Phone_Receiver,
+  } = dt;
+  Transport_customer.create({
+    Name_Sender,
+    Adress_Sender,
+    Phone_Sender,
+    Name_Receiver,
+    Adress_Receiver,
+    Phone_Receiver,
+  }).then(result => res.redirect('/quanlidonvan'));
+});
+router.get('/quanlidonvan/delete/:id_transport', (req, res) => {
   Transport_customer.destroy({
-    where:{
-      id_transport: req.params.id_transport
-    }
+    where: {
+      id_transport: req.params.id_transport,
+    },
   })
-  .then(result =>{
-    console.log(result)
-    console.log('Xóa thành công')
-    res.redirect('/quanlidonvan')
-  })
-  .catch(err=>console.log('err'))
-})
-router.get('/transport_employees',(req,res)=>{
-  res.render('admin/Transport_Employees')
-})
-
-
-
-
-
+    .then((result) => {
+      console.log(result);
+      console.log('Xóa thành công');
+      res.redirect('/quanlidonvan');
+    })
+    .catch(err => console.log('err'));
+});
+router.get('/transport_employees', (req, res) => {
+  res.render('admin/Transport_Employees');
+});
 
 module.exports = router;

@@ -1,2 +1,2 @@
-var message = "Error";
+const message = 'Error';
 console.log(message);

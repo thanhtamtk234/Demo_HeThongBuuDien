@@ -41,6 +41,7 @@
     "expect.js": "^0.3.1",
     "mocha": "^6.1.4",
     "nodemon": "^1.18.9",
+    "prettier": "^1.18.2",
     "supertest": "^4.0.2",
     "webpack-node-externals": "^1.7.2"
   }

@@ -1,22 +1,25 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-const bodyParser = require('body-parser')
-var session = require('express-session');
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var flash = require('connect-flash');
-var app = express();
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const bodyParser = require('body-parser');
+const session = require('express-session');
+const flash = require('connect-flash');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+
+const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(session({
-  secret: 'something',
-  cookie: {
-      maxAge: 1000 * 50 * 5 //đơn vị là milisecond
-  }
-}));
+app.use(
+  session({
+    secret: 'something',
+    cookie: {
+      maxAge: 1000 * 50 * 5, // đơn vị là milisecond
+    },
+  }),
+);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jsx');
@@ -34,12 +37,12 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
