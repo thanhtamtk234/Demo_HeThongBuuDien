@@ -10,22 +10,6 @@ class AddUser extends Component {
                 <Css />
                 <form className="register" method="POST">
                     <h1 className="add">Thêm nhân viên</h1>
-                    {/* <div className="row detail-user">
-                        <legend>Chi tiết tài khoản
-                    </legend>
-                        <div className="col-md-6">
-                            <div className="form-inline">
-                                <span>Email *</span>
-                                <input type="text" name="email" required />
-                            </div>
-                        </div>
-                        <div className="col-md-6">
-                            <div className="form-inline">
-                                <span>Mật khẩu *</span>
-                                <input type="text" name="password" required />
-                            </div>
-                        </div>
-                    </div> */}
                     <div className="row">
                         <legend>Thông tin cá nhân
                     </legend>

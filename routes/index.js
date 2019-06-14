@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const db = require('../config/database');
 const User = require('../models/user');
-
+const Transport_customer = require('../models/transport')
 /* GET home page. */
 router.get('/', (req, res, next) => {
   res.render('index', { title: 'Express' });
@@ -34,7 +34,6 @@ router.post('/login', (req, res) => {
 
   if (username == 'admin' && pw == '12345') {
     // req.flash('loginMessage','dkfksd')
-
     res.redirect('admin');
   }
   else {
@@ -54,7 +53,9 @@ router.post('/login', (req, res) => {
           res.redirect('/nhanvien')
         }
       })
-      .catch(err => res.send('vghf'))
+      .catch(err => res.redirect('/login'),
+      // req.flash('loginMessage','dkfksd')
+      )
   }
 })
 router.get('/admin', (req, res) => {
@@ -72,10 +73,7 @@ router.get('/nhanvien', (req, res) => {
 router.get('/them', (req, res) => {
   res.render('admin/AddUser')
 });
-router.get('/guihang', (req, res) => {
-  res.render('layouts/DonVan')
 
-});
 // begin addUser
 router.post('/them', (req, res) => {
   const data = {
@@ -87,9 +85,7 @@ router.post('/them', (req, res) => {
     MaBuuCuc: req.body.mabuucuc
 
   }
-  console.log(data)
   let { Email, password, username, Sdt, DiaChi, MaBuuCuc } = data;
-  console.log(Email, password, username, Sdt, DiaChi, MaBuuCuc)
   User.create({ Email, password, username, Sdt, DiaChi, MaBuuCuc })
     .then(result => res.redirect('/admin/user'))
     .catch(err => console.log(err))
@@ -103,44 +99,60 @@ router.get('/admin/user/delete/:id', (req, res) => {
     }
   })
     .then(result => {
+      console.log(result)
       console.log('Xóa thành công')
       res.redirect('/admin/user')
     })
     .catch(err => console.log(err))
 })
 
-
-
-
-
-
-// router.post('/signin', function (req, res) {
-//   var user_name=req.body.User;
-//   var password=req.body.password;
-//   if(user_name=='admin' && password=='admin'){
-//   	res.send('success');
-//   }
-//   else{
-//   	res.send('Failure');
-//   }
-// })
-
-//add user
-router.get('/admin/user/add', (req, res) => {
-  const data = {
-    id: 3,
-    username: 'mai',
-    password: '123456789111',
-    role: 1
+//Transport
+router.get('/guihang', (req, res) => {
+  res.render('layouts/Transport_Customer')
+});
+router.get('/quanlidonvan',(req,res)=>{
+  Transport_customer.findAll()
+  .then(result =>{
+    // console.log(result)
+    res.render('admin/Transport_customer',{result});
+  })
+  .catch(err => console.log(err))
+});
+  
+router.post('/guihang',(req,res)=>{
+  const dt={
+    Name_Sender:req.body.hotengui,
+    Adress_Sender:req.body.diachigui,
+    Phone_Sender:req.body.sdtgui,
+    Name_Receiver:req.body.hotennhan,
+    Adress_Receiver:req.body.diachinhan,
+    Phone_Receiver:req.body.sdtnhan,
   }
-  let { id, username, password, role } = data;
-  //insert into table
-  User.create({ id, username, password, role })
-    .then(result => res.redirect('/admin/user'))
-    .catch(err => console.log(err))
-
-
+  console.log(dt)
+  let{Name_Sender,Adress_Sender,Phone_Sender,Name_Receiver,Adress_Receiver,Phone_Receiver}=dt;
+  Transport_customer.create({Name_Sender,Adress_Sender,Phone_Sender,Name_Receiver,Adress_Receiver,Phone_Receiver})
+  .then(result=> res.redirect('/quanlidonvan'))
 })
+router.get('/quanlidonvan/delete/:id_transport',(req,res)=>{
+  Transport_customer.destroy({
+    where:{
+      id_transport: req.params.id_transport
+    }
+  })
+  .then(result =>{
+    console.log(result)
+    console.log('Xóa thành công')
+    res.redirect('/quanlidonvan')
+  })
+  .catch(err=>console.log('err'))
+})
+router.get('/transport_employees',(req,res)=>{
+  res.render('admin/Transport_Employees')
+})
+
+
+
+
 
 
 module.exports = router;

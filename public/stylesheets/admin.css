@@ -1,4 +1,3 @@
-@import "compass/css3";
 
 * {
   box-sizing: border-box;
@@ -404,4 +403,12 @@ p.agreement label{
 .btn-return a {
   color:white;
   font-family: 'Roboto', sans-serif;
+}
+input.search[type=text] {
+  width: 18%;
+  padding: 12px 20px;
+  margin: 0px 20px 34px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
 }

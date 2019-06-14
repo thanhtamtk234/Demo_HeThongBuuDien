@@ -17,7 +17,6 @@ app.use(session({
       maxAge: 1000 * 50 * 5 //đơn vị là milisecond
   }
 }));
-app.use(flash());
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jsx');
@@ -28,6 +27,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+// app.use(flash({ unsafe: true }));
+// app.use(app.router);
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

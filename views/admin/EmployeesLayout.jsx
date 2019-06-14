@@ -10,7 +10,7 @@ class EmployeesLayout extends Component {
           <div>
                 <nav className="main-nav" id="main-nav">
                   <a href="/nhanvien">Trang chủ</a>
-                  <a href="/nhanvien">Quản lí đơn vận</a>
+                  <a href="/quanlidonvan">Quản lí đơn vận</a>
                   
                 </nav>
                 <div className="page-wrap">
@@ -21,7 +21,7 @@ class EmployeesLayout extends Component {
                           <a href="#" className=  "close-menu">
                             ☰
                           </a>
-                          <h1>EMPLOYEES</h1>
+                          <h1>Nhân viên</h1>
                       </header>
                       <div className="content">
                       
